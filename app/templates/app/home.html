@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block content %}
+
+<h2>This is home page</h2>
+
+<p>Name: {{ name }}</p>
+<p>Age: {{ age }}</p>
+<p>City: {{ city }}</p>
+
+{% if subjects %}
+<h4><b>Subjects</b></h4>
+
+<ul>
+    {% for sub in subjects %}
+        <li>{{ sub }}</li>
+    {% endfor %}
+</ul>
+
+{% else %}
+<p>No records Found</p>
+{% endif %}
+
+{% endblock content %}
