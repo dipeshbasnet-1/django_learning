@@ -1,22 +1,13 @@
 from django.shortcuts import render
+from .models import Student
 
 # Create your views here.
 
 
 def home(request):
+    students = Student.objects.all()
+    context={"student": students}
     
-    subject=[
-        "Python",
-        "Java",
-        "MySql",
-        "C++"
-    ]
-    context = {
-        "name":"Dipesh",
-        "age":20,
-        "city":"Kathmandu",
-        "subjects":subject
-    }
     
     return render(request, "app/home.html", context)
 

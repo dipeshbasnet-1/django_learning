@@ -4,23 +4,44 @@
 
 {% block content %}
 
-<h2 class="text-2xl font-bold mb-1">This is home page</h2>
+<div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow">
+    <table class="min-w-full divide-y divide-slate-200">
+        <thead class="bg-slate-50">
+            <tr>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
+                    Name
+                </th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
+                    Address
+                </th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
+                    Email
+                </th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
+                    Phone
+                </th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
+                    Age
+                </th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
+                    Department
+                </th>
+            </tr>
+        </thead>
 
-<p>Name: {{ name }}</p>
-<p>Age: {{ age }}</p>
-<p>City: {{ city }}</p>
-
-{% if subjects %}
-<h4 class="font-bold mt-4 text-2xl">Subjects</h4>
-<ul class="mt-2 rounded-lg overflow-hidden shadow-md" style="background: rgba(8, 40, 3, 0.607);">
-    {% for sub in subjects %}
-        <li class="text-white font-bold px-6 py-4 border-b border-green-700 list-disc" style="border-left: 4px solid rgb(0,128,0);">
-            {{ sub }}
-        </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No records Found</p>
-{% endif %}
+        <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
+            {% for student in student %}
+            <tr class="bg-white hover:bg-slate-50">
+                <td class="px-4 py-4">{{ student.name }}</td>
+                <td class="px-4 py-4">{{ student.address }}</td>
+                <td class="px-4 py-4">{{ student.email }}</td>
+                <td class="px-4 py-4">{{ student.number }}</td>
+                <td class="px-4 py-4">{{ student.age }}</td>
+                <td class="px-4 py-4">{{student.department.name}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% endblock content %}
