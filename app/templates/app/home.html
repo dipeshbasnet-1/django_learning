@@ -4,40 +4,28 @@
 
 {% block content %}
 
+<h2 class="text-3xl font-semibold mb-6">Student Records</h2>
 <div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow">
     <table class="min-w-full divide-y divide-slate-200">
         <thead class="bg-slate-50">
             <tr>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
-                    Name
-                </th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
-                    Address
-                </th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
-                    Email
-                </th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
-                    Phone
-                </th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
-                    Age
-                </th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
-                    Department
-                </th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">Name</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">Address</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">Email</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">Phone</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">Age</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">Department</th>
             </tr>
         </thead>
-
         <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
-            {% for student in student %}
+            {% for s in student %}
             <tr class="bg-white hover:bg-slate-50">
-                <td class="px-4 py-4">{{ student.name }}</td>
-                <td class="px-4 py-4">{{ student.address }}</td>
-                <td class="px-4 py-4">{{ student.email }}</td>
-                <td class="px-4 py-4">{{ student.number }}</td>
-                <td class="px-4 py-4">{{ student.age }}</td>
-                <td class="px-4 py-4">{{student.department.name}}</td>
+                <td class="px-4 py-4">{{ s.name }}</td>
+                <td class="px-4 py-4">{{ s.address }}</td>
+                <td class="px-4 py-4">{{ s.email }}</td>
+                <td class="px-4 py-4">{{ s.number }}</td>
+                <td class="px-4 py-4">{{ s.age }}</td>
+                <td class="px-4 py-4">{{ s.department.name }}</td>
             </tr>
             {% endfor %}
         </tbody>

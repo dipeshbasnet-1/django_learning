@@ -121,5 +121,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 JAZZMIN_SETTINGS={
     "site_title":"Student Management",
-    "site_header":"Admin Panel Site"
+    "site_header":"Admin Panel Site",
+    "welcome_sign":"Welcome Admin",
+    "copyright": "Dipesh 2026"
 }
