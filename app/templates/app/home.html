@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
-            {% for s in student %}
+            {% for s in page_object %}
             <tr class="bg-white hover:bg-slate-50">
                 <td class="px-4 py-4">{{ s.name }}</td>
                 <td class="px-4 py-4">{{ s.address }}</td>
@@ -30,6 +30,35 @@
             {% endfor %}
         </tbody>
     </table>
+
+<div class="mt-6 flex items-center justify-center gap-4">
+    {% if page_object.has_previous %}
+        <a href="?page={{ page_object.previous_page_number }}"
+            class="rounded-md bg-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-300">
+            ← Previous
+        </a>
+    {% else %}
+        <span class="cursor-not-allowed rounded-md bg-slate-100 px-4 py-2 text-sm font-medium text-slate-400">
+            ← Previous
+        </span>
+    {% endif %}
+
+    <span class="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">
+        Page {{ page_object.number }} of {{ page_object.paginator.num_pages }}
+    </span>
+
+    {% if page_object.has_next %}
+        <a href="?page={{ page_object.next_page_number }}"
+            class="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700">
+            Next →
+        </a>
+    {% else %}
+        <span class="cursor-not-allowed rounded-md bg-slate-100 px-4 py-2 text-sm font-medium text-slate-400">
+            Next →
+        </span>
+    {% endif %}
+</div>
+
 </div>
 
 {% endblock content %}

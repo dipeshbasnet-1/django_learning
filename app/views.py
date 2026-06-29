@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from .models import Student
 
 # Create your views here.
@@ -6,7 +7,14 @@ from .models import Student
 
 def home(request):
     students = Student.objects.all() # Select * from student
-    context={"student": students} 
+    paginator=Paginator(students,5)
+    page_number = request.GET.get("page")
+    page_object=paginator.get_page(page_number)
+    
+    context={
+        "student": students,
+        "page_object":page_object
+        } 
     
     return render(request, "app/home.html", context)
 
@@ -57,3 +65,37 @@ Student.objects.all():[5:10]
 Student.object.order_by('name').first():
 Student.object.order_by('name').last():
 '''
+
+"""
+Filtering:
+    filter()
+    exclude()
+    
+Sorting:
+    order_by()
+    
+Limiting:
+    slicing[]
+    first(),last()
+    
+Single object:
+    get()
+    
+Aggregation:
+    count()
+    aggregate()
+    Avg()
+    Sum()
+    Max()
+    Min()
+    
+    EX:
+        student.objects.aggregate(avg_age=Avg('age'), total_students=Count('id'))
+    
+Check:
+    exists()
+    
+Relationship optimization:
+    select_related()
+    prefetch_related()
+"""
