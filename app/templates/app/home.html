@@ -15,6 +15,7 @@
                 <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">Phone</th>
                 <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">Age</th>
                 <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">Department</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">Actions</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
@@ -26,6 +27,17 @@
                 <td class="px-4 py-4">{{ s.number }}</td>
                 <td class="px-4 py-4">{{ s.age }}</td>
                 <td class="px-4 py-4">{{ s.department.name }}</td>
+                <td class="px-4 py-4">
+                    <div class="flex items-center gap-6">
+                        <a href="{% url 'update_student' s.id %}" class="text-blue-600 hover:text-blue-800">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        
+                        <a href="" class="text-red-600 hover:text-red-800">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </a>
+                    </div>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

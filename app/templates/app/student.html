@@ -29,6 +29,9 @@ class="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm"
                 Department
             </th>
             <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
+                Phone Number
+            </th>
+            <th class="py-3 px-4 text-left text-sm font-semibold text-slate-700">
                 Registered At
             </th>
         </tr>
@@ -48,6 +51,7 @@ class="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm"
             <td class="px-4 py-4">{{ s.email }}</td>
             <td class="px-4 py-4">{{ s.age }}</td>
             <td class="px-4 py-4">{{ s.department }}</td>
+            <td class="px-4 py-4">{{ s.number }}</td>
             <td class="px-4 py-4">{{ s.created_at }}</td>
         </tr>
         {% endfor %}
