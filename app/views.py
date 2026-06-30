@@ -2,9 +2,23 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from .models import Student, Department
 from django.contrib import messages
-from .forms import StudentForm , StudentModelForm
+from .forms import StudentForm , StudentModelForm, CustomUserCreationForm
+
 
 # Create your views here.
+def register_user(request):
+    if request.method =="POST":
+        form=CustomUserCreationForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Account Created Successfully")
+            return redirect("home")
+    else:
+        form= CustomUserCreationForm()
+    context={"form": form}
+    return render (request, "app/register.html", context)
+    
 
 def home(request):
     students = Student.objects.all() # Select * from student
@@ -18,6 +32,7 @@ def home(request):
         } 
     
     return render(request, "app/home.html", context)
+
 
 def about(request):
     return render(request, "app/about.html")
@@ -35,6 +50,7 @@ def student_list(request):
     students = Student.objects.all()
     return render(request, "app/student.html", {"student": students})
 
+
 def student_detail(request,id):
     student=Student.objects.get(id=id)
     context={
@@ -42,6 +58,7 @@ def student_detail(request,id):
     }
     
     return render(request, "app/student_detail.html",context)
+
 
 # ----- Model Form ------
 def add_student(request):
@@ -57,7 +74,6 @@ def add_student(request):
         form=StudentModelForm()
     context = {"form":form}
     return render(request, "app/student_add.html",context)
-
 
 
 def update_student(request,id):
@@ -92,8 +108,8 @@ def update_student(request,id):
         "form": form
     }
     return render(request, "app/update_student.html", context)
-    
-    
+
+
 def delete_student(request, id):
     student= get_object_or_404(Student,id=id)
     student.delete()

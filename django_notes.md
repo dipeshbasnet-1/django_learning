@@ -176,7 +176,7 @@ Model Form
 ```python
 class StudentForm(forms.ModelForm):
 
-    class Meta:
+    class META:
         model = Student
         fields = "__all__"
 ```
@@ -490,16 +490,16 @@ prefetch_related()
 
 ```python
 def add_student(request):
-    departments = Department.objects.all()
-
-    if request.method == "POST":
-        name = request.POST.get("name")
-        address = request.POST.get("address")
-        email = request.POST.get("email")
-        age = request.POST.get("age")
-        number = request.POST.get("phone_number")
-        department_id = request.POST.get("department")
-
+    departments=Department.objects.all()
+    
+    if request.method=="POST":
+        name=request.POST.get("name")
+        address=request.POST.get("address")
+        email=request.POST.get("email")
+        age=request.POST.get("age")
+        number=request.POST.get("phone_number")
+        department_id=request.POST.get("department")
+        
         # Check duplicate email
         if Student.objects.filter(email=email).exists():
             context = {
@@ -507,10 +507,9 @@ def add_student(request):
                 "error": "A student with this email already exists."
             }
             return render(request, "app/student_add.html", context)
-
         department = Department.objects.get(id=department_id)
-
-        student = Student(
+        
+        student =Student(
             name=name,
             address=address,
             email=email,
@@ -518,15 +517,15 @@ def add_student(request):
             number=number,
             department=department,
         )
-
         student.save()
-
-        messages.success(request, "Student added successfully")
+        
+        messages.success(request, "Student added Successfully")
         return redirect("students")
-
-    return render(request, "app/student_add.html", {
-        "departments": departments
-    })
+    
+    context={
+        "departments":departments
+    }
+    return render (request,"app/student_add.html", context)
 ```
 
 **Notes**
@@ -543,7 +542,7 @@ def add_student(request):
 def add_student(request):
     if request.method == "POST":
         form = StudentForm(request.POST)
-
+        
         if form.is_valid():
             Student.objects.create(
                 name=form.cleaned_data["name"],
@@ -551,17 +550,18 @@ def add_student(request):
                 email=form.cleaned_data["email"],
                 age=form.cleaned_data["age"],
                 number=form.cleaned_data["number"],
-                department=form.cleaned_data["department"],
+                department = form.cleaned_data["department"]
             )
-
-            messages.success(request, "Student added successfully")
+            
+            messages.success(request, "Student added successfully")     # Save student here
             return redirect("students")
     else:
         form = StudentForm()
-
-    return render(request, "app/student_add.html", {
+        
+    context = {
         "form": form
-    })
+    }
+    return render(request, "app/student_add.html", context)
 ```
 
 **Notes**
@@ -624,41 +624,3 @@ This approach manually retrieves form data from `request.POST`, performs validat
 
 --------------------------------
 
-##  Django form 
-def add_student(request):
-    if request.method == "POST":
-        form = StudentForm(request.POST)
-        
-        if form.is_valid():
-            Student.objects.create(
-                name=form.cleaned_data["name"],
-                address=form.cleaned_data["address"],
-                email=form.cleaned_data["email"],
-                age=form.cleaned_data["age"],
-                number=form.cleaned_data["number"],
-                department = form.cleaned_data["department"]
-            )
-            
-            messages.success(request, "Student added successfully")     # Save student here
-            return redirect("students")
-    else:
-        form = StudentForm()
-        
-    context = {
-        "form": form
-    }
-    return render(request, "app/student_add.html", context)
-    
-This approach uses a `ModelForm` to validate input and simplify handling form data.
-
-```python
-# your ModelForm add_student() function
-```
-
-### Features
-- Uses `StudentForm`
-- Built-in validation
-- Cleaner and more maintainable
-- Recommended approach for most Django projects
-
----------------------------------------
