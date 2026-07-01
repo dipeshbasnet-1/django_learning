@@ -2,28 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-'''
-ModelField:
-    CharField()
-    TextField()
-    IntegerField()
-    FloatField()
-    DecimalField()
-    BooleanField()
-    DateField()
-    TimeField()
-    DateTimeField()
-    EmailField()
-    URLField()
-    ImageField()
-    FileField()
-    ForeignKey()
-
-Field_options:
-    null:True-> database can store null value
-    blank:True-> form field can be left empty while submitting form
-'''
-
 class Department(models.Model):
     name=models.CharField(max_length=105)
     
