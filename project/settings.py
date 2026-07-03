@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5zhx-w^88&1eh21hj)_#@rss#w*j4xv18n7vs8o4r14%ikc*98
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["DipeshBasnet.pythonanywhere.com", "*"]
 
 
 # Application definition
@@ -118,6 +118,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT=BASE_DIR / "staticfiles"
 
 JAZZMIN_SETTINGS={
     "site_title":"Student Management",
